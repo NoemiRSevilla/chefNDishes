@@ -1,0 +1,48 @@
+@using chefNDishes.Models
+@model Dish
+
+<link rel="stylesheet" href="~/css/site.css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <h1 class="white mr-auto text">Add a Dish</h1>
+    <a href="/dishes/new" class="btn btn-info">Back</a>
+</nav>
+<div class="container">
+    <div class='row container'>
+        <form asp-action="SubmitDish" asp-controler="Home" method="post">
+            <div class="form-group">
+                <span class="red" asp-validation-for="Name"></span>
+                <label asp-for="Name">Name of Dish:</label>
+                <input asp-for="Name" class="form-control">
+            </div>
+            <div class="form-group">
+                <span class="red" asp-validation-for="Calories"></span>
+                <label asp-for="Calories"># of Calories: </label>
+                <input asp-for="Calories" class="form-control">
+            </div>
+            <div class="form-group">
+                <span class="red" asp-validation-for="Tastiness"></span>
+                <label asp-for="Tastiness">Tastiness: </label>
+                <input asp-for="Tastiness" class="form-control">
+            </div>
+            <div class="form-group">
+                Chef: <select asp-for="ChefId">
+                    @foreach(var chef in ViewBag.allChefs)
+                    {
+                        <option asp-for="ChefId" value="@chef.ChefId">
+                            @chef.FirstName @chef.LastName
+                        </option>
+                    }
+            </select>
+            </div>
+            <div class="form-group">
+                <span class="red" asp-validation-for="Description"></span>
+                <label asp-for="Description">Description: </label>
+                <input asp-for="Description" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Add a Dish</button>
+        </form>
+    </div>
+</div>
+</body>

@@ -1,0 +1,44 @@
+    @using chefNDishes.Models
+    @model List<Dish>
+    
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <h1 class="white mr-auto text col">
+        <a class="btn btn-primary active" href="/" role="button">Chefs</a>
+        <a class="btn btn-primary" href="/dishes" role="button">Dishes</a>
+    </h1>
+</nav>
+
+<div class="container moveit">
+    <div class="container box">
+        <div class="row">
+            <p class="col">Check out some recent dishes!</p>
+            <a href="dish/new" class="btn btn-info">Add a Dish</a>
+        </div>
+        <table class="table table-dark"
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Chef</th>
+                    <th scope="col">Tastiness</th>
+                    <th scope="col">Calories</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var d in Model)
+                {
+                    <tr>
+                        <td>@d.Name</td>
+                        <td>@d.CreatedBy.FirstName @d.CreatedBy.LastName</td>
+                        <td>@d.Tastiness</td>
+                        <td>@d.Calories</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</div>
+

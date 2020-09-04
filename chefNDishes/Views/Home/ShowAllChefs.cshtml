@@ -1,0 +1,47 @@
+@using chefNDishes.Models
+@model List<Chef>
+
+<link rel="stylesheet" href="~/css/site.css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<body>
+    
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <h1 class="white mr-auto text col">
+        <a class="btn btn-primary active" href="/" role="button">Chefs</a>
+        <a class="btn btn-primary" href="/dishes" role="button">Dishes</a>
+    </h1>
+</nav>
+
+<div class="container moveit">
+    <div class="container box">
+        <div class="row">
+            <p class="col">Check out our roster of Chefs</p>
+            <a href="/chef/new" class="btn btn-info">Add a Chef</a>
+        </div>
+    </div>
+    <table class="table table-dark"
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col"># of Dishes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    @{
+                        DateTime today = DateTime.Today;
+                        int age = today.Year - @c.DOB.Year;
+                    }
+                    <td>@c.FirstName @c.LastName</td>
+                    <td>@age</td>
+                    <td>@c.CreatedDishes.Count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</div>
